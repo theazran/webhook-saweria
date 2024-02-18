@@ -1,4 +1,3 @@
-
 const express = require("express");
 const bodyParser = require("body-parser");
 
@@ -7,18 +6,16 @@ app.use(bodyParser.json());
 
 const MyNotificationLibrary = require("./lib/notifku");
 
-const notificationApiUrl = "https://notifku.my.id/send";
+const notificationApiUrl = process.env.NOTIFICATION_API_URL;
 const notificationClient = new MyNotificationLibrary(notificationApiUrl);
 
 app.post("/webhook", (req, res) => {
   const data = req.body;
-  const message = `*Donasi Baru Diterima 🎉🎉🎉*\n\n*ID*: ${data.id}\n*Tipe*: ${data.type}\n*Jumlah*: Rp ${data.amount_raw}\n*Potongan*: Rp ${data.cut}\n*Nama*: ${data.donator_name}\n*Pesan*: ${data.message}`;
+  const message = `*Donasi Baru Diterima *\n\n*ID*: ${data.id}\n*Tipe*: ${data.type}\n*Jumlah*: Rp ${data.amount_raw}\n*Potongan*: Rp ${data.cut}\n*Nama*: ${data.donator_name}\n*Pesan*: ${data.message}`;
 
   notificationClient
-    .sendNotification(
-      "1234567890",
-      "chat",
-      "6285255646434",
+    .sendNotification("1234567890",
+      "chat","85255646434",
       message,
     )
     .then((result) => {
@@ -34,3 +31,5 @@ app.post("/webhook", (req, res) => {
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
+
+module.exports = app;
