@@ -6,7 +6,7 @@ app.use(bodyParser.json());
 
 const MyNotificationLibrary = require("./lib/notifku");
 
-const notificationApiUrl = process.env.NOTIFICATION_API_URL;
+const notificationApiUrl = "https://notifku.my.id/send";
 const notificationClient = new MyNotificationLibrary(notificationApiUrl);
 
 app.post("/webhook", (req, res) => {
