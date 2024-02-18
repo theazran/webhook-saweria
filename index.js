@@ -13,11 +13,10 @@ app.get("/", async (req, res) => {
 
 app.post("/webhook", async (req, res) => {
   const data = req.body;
-  console.log(data);
+  // console.log(data);
   const message = `*Donasi Baru Diterima 🎉*\n\n*ID*: ${data.id}\n*Tipe*: ${data.type}\n*Jumlah*: Rp ${data.amount_raw}\n*Potongan*: Rp ${data.cut}\n*Nama*: ${data.donator_name}\n*Pesan*: ${data.message}`;
 
-  await sendNotification();
-  await sendNotification(message)
+  await sendNotification(data)
     .then((result) => {
       console.log(JSON.stringify(result));
     })
