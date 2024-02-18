@@ -11,11 +11,12 @@ const notificationClient = new MyNotificationLibrary(notificationApiUrl);
 
 app.post("/webhook", (req, res) => {
   const data = req.body;
-  const message = `*Donasi Baru Diterima *\n\n*ID*: ${data.id}\n*Tipe*: ${data.type}\n*Jumlah*: Rp ${data.amount_raw}\n*Potongan*: Rp ${data.cut}\n*Nama*: ${data.donator_name}\n*Pesan*: ${data.message}`;
+  console.log(data);
+  const message = `*Donasi Baru Diterima 🎉*\n\n*ID*: ${data.id}\n*Tipe*: ${data.type}\n*Jumlah*: Rp ${data.amount_raw}\n*Potongan*: Rp ${data.cut}\n*Nama*: ${data.donator_name}\n*Pesan*: ${data.message}`;
 
   notificationClient
     .sendNotification("1234567890",
-      "chat","85255646434",
+      "chat","6285255646434",
       message,
     )
     .then((result) => {
