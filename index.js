@@ -9,6 +9,10 @@ const MyNotificationLibrary = require("./lib/notifku");
 const notificationApiUrl = "https://notifku.my.id/send";
 const notificationClient = new MyNotificationLibrary(notificationApiUrl);
 
+app.get("/", (req, res) => {
+  res.send("Home");
+});
+
 app.post("/webhook", (req, res) => {
   const data = req.body;
   console.log(data);
