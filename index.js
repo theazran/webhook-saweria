@@ -4,18 +4,16 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use(bodyParser.json());
 
-const sendNotification = require("./lib/notifku");
+const sendMessage = require("./lib/notifku");
 
 app.get("/", async (req, res) => {
-  await sendNotification("message");
+  await sendMessage("6285255646434@s.whatsapp.net", "message");
   res.send("Home");
 });
 
 app.post("/webhook", async (req, res) => {
   const data = req.body;
-  await sendNotification(
-    `*Donasi Baru Diterima 🎉*\n\n*ID*: ${data.id}\n*Tipe*: ${data.type}\n*Jumlah*: Rp ${data.amount_raw}\n*Potongan*: Rp ${data.cut}\n*Nama*: ${data.donator_name}\n*Pesan*: ${data.message}`,
-  )
+ await sendMessage("6285255646434@s.whatsapp.net", `*Donasi Baru Diterima 🎉*\n\n*ID*: ${data.id}\n*Tipe*: ${data.type}\n*Jumlah*: Rp ${data.amount_raw}\n*Potongan*: Rp ${data.cut}\n*Nama*: ${data.donator_name}\n*Pesan*: ${data.message}`)
     .then((result) => {
       console.log(JSON.stringify(result));
     })
