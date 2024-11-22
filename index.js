@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use(bodyParser.json());
 
-const sendMessage = require("./lib/notifku");
+const {sendMessage} = require("./lib/notifku");
 
 app.get("/", async (req, res) => {
   await sendMessage("6285255646434@s.whatsapp.net", "message");
